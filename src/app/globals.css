@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #fbf3ea;
+  --paper-deep: #f3e6d8;
+  --ink: #3a2a2c;
+  --ink-soft: #6b5457;
+  --rose: #c97b84;
+  --rose-soft: #e7bcc2;
+  --burgundy: #7a2233;
+  --gold: #b8862f;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+  --color-burgundy: var(--burgundy);
+  --color-gold: var(--gold);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+  --font-script: var(--font-script);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, var(--paper-deep) 0%, var(--paper) 55%),
+    var(--paper);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--rose-soft);
+  color: var(--burgundy);
+}
+
+@keyframes drift-down {
+  0% {
+    transform: translate3d(var(--drift-x-start, 0), -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--drift-opacity, 0.7);
+  }
+  90% {
+    opacity: var(--drift-opacity, 0.7);
+  }
+  100% {
+    transform: translate3d(var(--drift-x-end, 40px), 110vh, 0) rotate(320deg);
+    opacity: 0;
+  }
+}
+
+.animate-drift {
+  animation-name: drift-down;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.6s ease-in-out infinite;
+}
+
+@keyframes seal-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(122, 34, 51, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(122, 34, 51, 0);
+  }
+}
+
+.animate-seal-pulse {
+  animation: seal-pulse 2.2s ease-out infinite;
+}
+
+.text-balance {
+  text-wrap: balance;
+}

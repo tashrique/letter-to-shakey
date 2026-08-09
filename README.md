@@ -1,38 +1,46 @@
-## World Time App (My first flutter app)
-A simple Flutter application that displays the current time for various locations around the world. This project serves as an introduction to Flutter development and showcases the use of APIs to fetch time data dynamically.
+# A Letter Back to You
 
-## Features
-- Select and display the current time for multiple locations.
-- Simple, user-friendly interface built with Flutter.
-- Learn Flutter basics and explore asynchronous programming with APIs.
+A small, interactive reply site — an envelope you open, a letter you scroll
+through, and an answer you tap to reveal. Built with Next.js, Tailwind CSS,
+and Framer Motion.
 
+## Editing the words
 
-## Getting Started
-### Clone the repository:
+Everything you'll actually want to change lives in one file:
+
+**`src/data/content.ts`**
+
+- `herName` / `hisName` / `todayLabel` — names and the date shown in the signature.
+- `envelope` — the text on the closed-envelope intro screen.
+- `sections` — each numbered part of the letter (eyebrow label, title, paragraphs).
+- `answerReveal` — the prompt button and the big reveal text/paragraph.
+- `signature` — the closing line, name, date, and P.S.
+
+Edit the strings in that file and the site updates everywhere they're used —
+no need to touch any component.
+
+## Running it locally
+
 ```bash
-git clone https://github.com/tashrique/world-time-app-flutter.git
+npm install
+npm run dev
 ```
 
+Then open [http://localhost:3000](http://localhost:3000). Best viewed on a
+larger screen, but it's fully responsive and works on mobile too.
 
-### Navigate to the project folder:
-```bash
-cd world-time-app-flutter
-```
+## Structure
 
-### Install dependencies:
-```bash
-flutter pub get
-```
+- `src/app/page.tsx` — assembles the page: petals background, envelope intro, sections, answer reveal, signature.
+- `src/components/Envelope.tsx` — the closed-envelope intro and open interaction.
+- `src/components/Petals.tsx` — the floating background petals.
+- `src/components/LetterSection.tsx` — a single scroll-revealed section of the letter.
+- `src/components/AnswerReveal.tsx` — the tap-to-reveal answer with confetti.
+- `src/components/Signature.tsx` — the closing signature block.
+- `src/data/content.ts` — all the text content (see above).
 
-### Run the app on your preferred emulator or physical device:
-```bash
-flutter run
-```
+## Deploying
 
-## Resources
-If you're new to Flutter, here are a few resources to help you get started:
-- Write Your First Flutter App
-- Flutter Cookbook
-- Flutter Documentation
-  
-Feel free to fork and enhance the project! 😊
+The easiest option is [Vercel](https://vercel.com/new) — connect the repo and
+it deploys automatically. Any static/Node host that supports Next.js works
+too.
