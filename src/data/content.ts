@@ -13,6 +13,16 @@ export const envelope = {
   cta: "Open it",
 };
 
+export const lockScreen = {
+  eyebrow: "this letter is locked",
+  title: "You know what to type.",
+  subtitle: "Enter the password to open it.",
+  placeholder: "Password",
+  button: "Unlock",
+  error: "That's not it. Try again.",
+  cooldown: "Too many tries — wait a moment before trying again.",
+};
+
 export type ReplySection = {
   id: string;
   eyebrow: string;

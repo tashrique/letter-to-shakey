@@ -19,6 +19,32 @@ Everything you'll actually want to change lives in one file:
 Edit the strings in that file and the site updates everywhere they're used —
 no need to touch any component.
 
+## Setting the password
+
+The whole site sits behind a password screen (`src/components/PasswordGate.tsx`).
+To set it:
+
+```bash
+node scripts/hash-password.mjs "your password here"
+```
+
+Paste the printed hash into `passwordHash` in `src/data/auth.ts`. The
+plaintext password never has to touch a file that gets committed.
+
+**Important — read this before you rely on it:** this site is a static
+export with no server, so the password check runs entirely in the visitor's
+browser. It's a real deterrent against someone stumbling on the link or
+guessing, but it is *not* real security — anyone who opens browser dev tools
+can read the hash and brute-force it offline, or just run
+`sessionStorage.setItem("letter-unlocked", "1")` in the console to skip the
+gate outright. If you ever need it to actually be unbypassable, that
+requires a server-side check (e.g. deploying to Vercel with an API route and
+an httpOnly cookie) instead of this static-export approach.
+
+Once unlocked, a visitor stays unlocked for that browser tab/session (stored
+in `sessionStorage`) — reloading the page won't re-prompt them, but closing
+the browser or opening it in a new/incognito window will.
+
 ## Running it locally
 
 ```bash
@@ -37,7 +63,10 @@ larger screen, but it's fully responsive and works on mobile too.
 - `src/components/LetterSection.tsx` — a single scroll-revealed section of the letter.
 - `src/components/AnswerReveal.tsx` — the tap-to-reveal answer with confetti.
 - `src/components/Signature.tsx` — the closing signature block.
+- `src/components/PasswordGate.tsx` — the password screen (see above).
 - `src/data/content.ts` — all the text content (see above).
+- `src/data/auth.ts` — the password hash (see above).
+- `scripts/hash-password.mjs` — generates the hash to paste into `auth.ts`.
 
 ## Deploying
 

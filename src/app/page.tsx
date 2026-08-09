@@ -8,6 +8,7 @@ import LetterSection from "@/components/LetterSection";
 import AnswerReveal from "@/components/AnswerReveal";
 import Signature from "@/components/Signature";
 import Divider from "@/components/Divider";
+import PasswordGate from "@/components/PasswordGate";
 import { sections } from "@/data/content";
 
 export default function Home() {
@@ -20,27 +21,29 @@ export default function Home() {
   });
 
   return (
-    <main className="relative min-h-screen">
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 origin-left z-40"
-        style={{ scaleX: progress, background: "var(--rose)" }}
-      />
+    <PasswordGate>
+      <main className="relative min-h-screen">
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 origin-left z-40"
+          style={{ scaleX: progress, background: "var(--rose)" }}
+        />
 
-      <Petals />
-      <Envelope open={open} onOpen={() => setOpen(true)} />
+        <Petals />
+        <Envelope open={open} onOpen={() => setOpen(true)} />
 
-      {open && (
-        <div className="relative">
-          {sections.map((section, i) => (
-            <div key={section.id}>
-              {i > 0 && <Divider />}
-              <LetterSection section={section} />
-              {section.id === "the-answer" && <AnswerReveal />}
-            </div>
-          ))}
-          <Signature />
-        </div>
-      )}
-    </main>
+        {open && (
+          <div className="relative">
+            {sections.map((section, i) => (
+              <div key={section.id}>
+                {i > 0 && <Divider />}
+                <LetterSection section={section} />
+                {section.id === "the-answer" && <AnswerReveal />}
+              </div>
+            ))}
+            <Signature />
+          </div>
+        )}
+      </main>
+    </PasswordGate>
   );
 }
