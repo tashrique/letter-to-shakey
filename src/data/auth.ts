@@ -9,4 +9,4 @@
 //
 // Current placeholder password is "changeme" — replace it before sharing the link.
 export const passwordHash =
-  "057ba03d6c44104863dc7361fe4578965d1887360f90a0895882e58a6248fc86";
+  "74757879eaa082729e23fc615cfe4009827037727e2cc82640d0f139fda49d11";
